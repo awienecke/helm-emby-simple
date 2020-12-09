@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emby
+spec:
+  template:
+    metadata:
+      name: emby-app
+      labels: 
+        name: emby-app
+    spec:
+      volumes:
+        - name: emedia
+          persistentVolumeClaim:
+            claimName: emby-media-claim
+        - name: econfig
+          persistentVolumeClaim:
+            claimName: emby-config-claim
+      containers:
+      - name: emby
+        image: emby/embyserver:latest
+        env:
+        - name: UID
+          value: "1000"
+        - name: GID
+          value: "1000"
+        volumeMounts:
+        - name: econfig
+          mountPath: "/config/"
+        - name: emedia
+          mountPath: "/media/"
+  replicas: 1 
+  selector:
+    matchLabels:
+      name: emby-app
