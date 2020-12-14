@@ -18,7 +18,7 @@ spec:
             claimName: emby-config-claim
       containers:
       - name: emby
-        image: emby/embyserver:latest
+        image: emby/embyserver
         env:
         - name: UID
           value: "1000"
@@ -29,6 +29,7 @@ spec:
           mountPath: "/config/"
         - name: emedia
           mountPath: "/media/"
+        imagePullPolicy: IfNotPresent
   replicas: 1 
   selector:
     matchLabels:

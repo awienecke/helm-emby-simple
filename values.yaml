@@ -1,6 +1,6 @@
 FQDN: "emby.domain.tld"
 shorthost: "emby"
-configsize: "2Gi"
+configsize: "4Gi"
 mediasize: "3750000Mi"
 hostmediapath: "/drive/media/"
-hostconfigpath: "/drive/emby/"
+hostconfigpath: "/etc/emby/"
